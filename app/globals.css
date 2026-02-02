@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+:root {
+  --background: #030303;
+  --foreground: #e0d4c3;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  scroll-behavior: smooth;
+}
+
+#canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+  pointer-events: none; /* Let clicks pass through empty areas */
+}
+
+/* Re-enable pointer events and bring content up */
+.glass-panel,
+.logo-blend,
+.nav-logo,
+.nav-progress {
+  pointer-events: auto;
+  position: relative;
+  z-index: 10; /* Content sits above canvas */
+}
+
+/* Maximalist Typography */
+h1,
+h2,
+h3 {
+  font-family: var(--font-cinzel), serif;
+  text-transform: uppercase;
+  line-height: 0.9;
+}
+
+.font-modern {
+  font-family: var(--font-syncopate), sans-serif;
+}
+
+.font-classic {
+  font-family: var(--font-italiana), serif;
+}
+
+.outline-text {
+  -webkit-text-stroke: 1px rgba(224, 212, 195, 0.5);
+  color: transparent;
+}
+
+/* Standard Glass Panel - NO BLEND MODE */
+.glass-panel {
+  background: rgba(5, 5, 5, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  mix-blend-mode: normal;
+}
+
+/* --- LOGO BLEND CLASS (Exact copy of logo style) --- */
+.logo-blend {
+  mix-blend-mode: difference !important;
+  color: #ffffff !important;
+}
+
+/* Force children to inherit white for difference calculation */
+.logo-blend h1,
+.logo-blend h2,
+.logo-blend h3,
+.logo-blend p,
+.logo-blend span,
+.logo-blend div {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #444;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-family: var(--font-syncopate), sans-serif;
+  transition: opacity 1s ease;
+}
+
+/* Logo and Nav always blend */
+.nav-logo,
+.nav-progress {
+  mix-blend-mode: difference;
+}
+
+.nav-logo {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 100;
+}
+
+.nav-progress {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  z-index: 100;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  pointer-events: auto;
+}
+
+/* Hit area expansion for easier clicking */
+.dot::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.5);
+}
+
+.dot.active {
+  background: #fff;
+  transform: scale(2.5);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.04;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAA5OTkAAABMTExERERmZmYzMzMyMjJ4D30DAAAAB3RSTlMAnNm8bzAqjLdGowAAAMJlEQVQ4y2NgwA2YQACO4QZgDAGwYQZgDAMwYgZgDAPQYgZgDAMwYgZgDAPQYgZgDAMwYgZgDAPQYgZgDAMwYgZgDAPQYgZgDAMwYgZgDAPQYgZgDAMwYgZgDAPQYgZgDAMwYgZgDAPQYgZgDAMwYgZgDAPQYgZgDAMwYgZgDAPQYgZgDAMwYgZgDANQAQZgDADoO2aC902hSAAAAABJRU5ErkJggg==");
+}
+
+.chapter-num {
+  font-family: var(--font-syncopate), sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: #888;
+  margin-bottom: 1rem;
+  display: block;
+}
