@@ -224,7 +224,7 @@ export default function Home() {
         color: 0xffffff,
         transparent: true,
         opacity: 0.8,
-        blending: any
+        blending: THREE.AdditiveBlending
       });
 
       particlesSystem = new THREE.Points(geometry, material);
@@ -287,8 +287,8 @@ export default function Home() {
           color: 0xFFD700,
           transparent: true,
           opacity: 0.9,
-          blending: any,
-          side: any
+          blending: THREE.AdditiveBlending,
+          side: THREE.DoubleSide
         });
 
         const mesh = new THREE.Mesh(geo, mat);
@@ -317,7 +317,7 @@ export default function Home() {
         
         const material = new THREE.MeshStandardMaterial({
           map: texture,
-          side: any,
+          side: THREE.DoubleSide,
           roughness: 0.6,
           metalness: 0.1,
           emissive: 0xffffff,
