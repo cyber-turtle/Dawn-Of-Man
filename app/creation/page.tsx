@@ -199,7 +199,7 @@ export default function CreationPage() {
         color: 0xffffff,
         transparent: true,
         opacity: 0.8,
-        blending: THREE.AdditiveBlending
+        blending: any
       });
 
       particlesSystem = new THREE.Points(geometry, material);
@@ -262,8 +262,8 @@ export default function CreationPage() {
           color: 0xFFD700,
           transparent: true,
           opacity: 0.9,
-          blending: THREE.AdditiveBlending,
-          side: THREE.DoubleSide
+          blending: any,
+          side: any
         });
 
         const mesh = new THREE.Mesh(geo, mat);
@@ -292,7 +292,7 @@ export default function CreationPage() {
         
         const material = new THREE.MeshStandardMaterial({
           map: texture,
-          side: THREE.DoubleSide,
+          side: any,
           roughness: 0.6,
           metalness: 0.1,
           emissive: 0xffffff,
