@@ -45,10 +45,11 @@ export default function Home() {
 
     const loadScripts = async () => {
       try {
-        await loadScript('/js/three.min.js');
-        await loadScript('/js/simplex-noise.min.js');
-        await loadScript('/js/gsap.min.js');
-        await loadScript('/js/ScrollTrigger.min.js');
+        const basePath = process.env.NODE_ENV === 'production' ? '/Dawn-Of-Man' : '';
+        await loadScript(`${basePath}/js/three.min.js`);
+        await loadScript(`${basePath}/js/simplex-noise.min.js`);
+        await loadScript(`${basePath}/js/gsap.min.js`);
+        await loadScript(`${basePath}/js/ScrollTrigger.min.js`);
         
         initializeScene();
       } catch (error) {
@@ -83,7 +84,8 @@ export default function Home() {
     container.appendChild(renderer.domElement);
 
     const textureLoader = new THREE.TextureLoader();
-    const adamTextureUrl = '/img/adam.jpg';
+    const basePath = process.env.NODE_ENV === 'production' ? '/Dawn-Of-Man' : '';
+    const adamTextureUrl = `${basePath}/img/adam.jpg`;
     
     const simplex = new SimplexNoise();
 
