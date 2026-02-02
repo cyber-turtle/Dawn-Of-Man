@@ -167,10 +167,10 @@ export default function CreationPage() {
     const worldGroup = new THREE.Group();
     scene.add(worldGroup);
 
-    let particlesSystem: THREE.Points;
-    let earthMesh: THREE.Mesh;
-    let godGroup: THREE.Group;
-    let paintingMeshReference: THREE.Mesh;
+    let particlesSystem: any;
+    let earthMesh: any;
+    let godGroup: any;
+    let paintingMeshReference: any;
     
     const paintingGroup = new THREE.Group();
     paintingGroup.position.set(0, 0, -60); 
@@ -284,7 +284,7 @@ export default function CreationPage() {
     }
 
     function createPainting() {
-      textureLoader.load(adamTextureUrl, (texture) => {
+      textureLoader.load(adamTextureUrl, (texture: any) => {
         texture.encoding = THREE.sRGBEncoding;
         texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
         
